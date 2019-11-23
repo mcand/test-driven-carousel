@@ -5,8 +5,13 @@ import CarouselSlide from './CarouselSlide';
 
 class Carousel extends React.PureComponent {
   static propTypes = {
-    slides: PropTypes.arrayOf(PropTypes.shape(CarouselSlide.propTypes))
+    defaultImgHeight: CarouselSlide.propTypes.imgHeight,
+    slides: PropTypes.arrayOf(PropTypes.share(CarouselSlide.propTypes))
       .isRequired,
+  };
+
+  static defaultProps = {
+    defaultImgHeight: CarouselSlide.defaultProps.imgHeight,
   };
 
   state = {
@@ -31,7 +36,10 @@ class Carousel extends React.PureComponent {
     const { slides, ...rest } = this.props;
     return (
       <div {...rest}>
-        <CarouselSlide {...slides[this.state.slideIndex]} />
+        <CarouselSlide
+          imgHeight={defaultImgHeight}
+          {...slides[this.state.slideIndex]}
+        />
         <CarouselButton data-action="prev" onClick={this.handlePrevClick}>
           Prev
         </CarouselButton>
