@@ -15,6 +15,7 @@ describe('CarouselSlide', () => {
     );
   });
 
+	/* redundant 
   it('renders a <figure>', () => {
     expect(wrapper.type()).toBe('figure');
   });
@@ -40,7 +41,7 @@ describe('CarouselSlide', () => {
     );
     expect(wrapper.find('figcaption strong').text()).toBe(description);
   });
-
+	*/
   it('passes other props through to the <figure>', () => {
     const style = {};
     const onClick = () => {};
@@ -60,6 +61,7 @@ describe('CarouselSlide', () => {
       mounted = mount(<Img src={imgUrl} imgHeight={500} />);
     });
 
+		/* redundant
     it('renders an <img> with the give src', () => {
       expect(mounted.containsMatchingElement(<img src={imgUrl} />)).toBe(true);
     });
@@ -68,6 +70,7 @@ describe('CarouselSlide', () => {
       expect(mounted).toHaveStyleRule('width', '100%');
       expect(mounted).toHaveStyleRule('object-fit', 'cover');
     });
+		*/
 
     it('uses imgHeight as the height style property', () => {
       expect(mounted).toHaveStyleRule('height', '500px');
@@ -94,5 +97,17 @@ describe('CarouselSlide', () => {
       expect(mounted.find(TestImg)).toHaveStyleRule('height', 'auto');
       expect(mounted.find(TestImg)).toHaveStyleRule('object-fit', 'fill');
     });
+
+		it('renders correctly', () => {
+			expect(mounted.find('img')).toMatchSnapshot();
+		});
   });
+
+	it('renders correctly', () => {
+		wrapper.setProps({
+			description: 'Description',
+			attribution: 'Attribution',
+		});
+		expect(wrapper).toMatchSnapshot();
+	});
 });
