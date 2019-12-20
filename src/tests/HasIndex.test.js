@@ -19,7 +19,7 @@ describe('HasIndex()', () => {
 	it ('has initial `index` state equal to the `defaultIndex`prop', () => {
 		expect(wrapper.state('index')).toBe(0);
 		const wrapper2 = shallow(<MockComponentWithIndex defaultIndex={1} />);
-		expect(wrapper2.state(index)).toBe(1);
+		expect(wrapper2.state('index')).toBe(1);
 	});
 
 	it('alawys has `index` state qual o the `index` prop', () => {
@@ -37,7 +37,7 @@ describe('HasIndex()', () => {
 		);
 		wrapperWithInitialIndex.setProps({ index: undefined });
 		wrapperWithInitialIndex.setState({ index: 3 });
-		expet(wrapperWithInitialIndex.state('index')).toBe(3);
+		expect(wrapperWithInitialIndex.state('index')).toBe(3);
 	});
 
 	it('calls `onIndexChange` on decrement/increment', () => {
